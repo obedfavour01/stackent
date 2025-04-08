@@ -46,7 +46,7 @@ const data = [
 const Sidebar = () => {
   return (
     <div
-      className="h-[100vh] border-r-[0.3px] 
+      className="h-[100vh] fixed top-0 bottom-0 border-r-[0.3px] w-2/12
     border-gray-700"
     >
       <div
@@ -111,7 +111,7 @@ const Sidebar = () => {
         </Tabs>
       </div>
 
-      <ul className="mt-4 flex flex-col gap-2 cursor-pointer pr-6 pl-8 ">
+      <ul className="mt-4 flex flex-col gap-1 cursor-pointer pr-6 pl-8 ">
         {data.map((val, ind) => (
           <li
             key={ind}
@@ -120,7 +120,7 @@ const Sidebar = () => {
                 text-gray-500 
                 hover:text-white 
                 p-2  
-                text-base
+                text-sm
                 rounded-lg"
           >
             {val.icon} {val.text}

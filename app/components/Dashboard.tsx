@@ -3,16 +3,35 @@ import { Particles } from '@/components/magicui/particles'
 import { Button } from '@/components/ui/button'
 import { Clock } from 'iconsax-react'
 import React from 'react'
+import RecommendedCards from './RecommendedCards'
+import ActiveStaking from './ActiveStaking'
+import useCoinData from '@/hooks/useCoinData'
+
+
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
 const Dashboard = () => {
-  return (
-    <div>
-      <div className=' flex m-8 border   border-red-500 h-[65vh]'>
 
-        <div className='basis-8/12 '>
-          <h4 className='text-[#cdc5f8] space-x-3 text-sm flex items-center gap-4'>
+  const { isLoading, data } = useCoinData()
+
+  console.log(data);
+
+  return (
+
+    <div>
+      <div className=' flex m-8 h-[50vh]'>
+
+        <div className='basis-8/12'>
+          <h4 className='text-[#cdc5f8] space-x-3 text-xs font-semibold flex items-center gap-4'>
             Recommended coins for 24 hours
-            <Clock color="#cdc5f8" variant="Bold" size={20} />
+            <Clock color="#cdc5f8" variant="Bold" size={14} />
             <Button className='bg-[#2E2D40] rounded-lg'>
               3 Assets
             </Button>
@@ -26,7 +45,7 @@ const Dashboard = () => {
 
               <Filter
                 options={["24h", "7days", "14days", "30days"]}
-                width={50}
+                width={90}
                 label='Time'
               />
               <Filter
@@ -36,31 +55,61 @@ const Dashboard = () => {
               />
               <Filter
                 options={["Desc", "potato", "Orange"]}
-                width={70}
+                width={100}
                 label='desc' />
 
             </div>
 
           </div>
+
+
+          <div className='flex gap-4 mt-8  w-full'>
+            {isLoading && <>Loading...</>}
+
+            {/* {
+              data && data.map((val, ind) => (
+                <RecommendedCards
+                  key={ind}
+                  img={val.image}
+                  coinName={val.name} />
+              ))
+            } */}
+
+
+            <Carousel
+              opts={{
+                align: "center",
+              }}
+              className="max-w-3xl "
+            >
+              <CarouselContent>
+                {data && data.map((val, ind) => (
+                  <div key = {ind} >
+
+                  <CarouselItem  className="md:basis-1/2 lg:basis-1/3"> 
+                      <RecommendedCards
+                        coin={val}/>
+                  </CarouselItem>
+
+                  </div>
+                ))}
+              </CarouselContent>
+              {  !isLoading && <CarouselPrevious />}
+              
+              {!isLoading && <CarouselNext />}
+            </Carousel>
+
+          </div>
+
         </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-        <div className='basis-4/12 flex justify-end '>
+        <div className='basis-4/12 flex justify-end'>
 
           <div className='
           relative
-            h-4/5 
+            h-[360px] 
             w-4/5 
             py-4 px-6
             bg-gradient-to-b from-[#0c0c1d] via-[#1a1333] to-[#826BBE]
@@ -110,6 +159,9 @@ const Dashboard = () => {
         </div>
       </div>
 
+      <hr className='bg-gray-500 h-[0.3px]' />
+
+      <ActiveStaking />
     </div>
   )
 }

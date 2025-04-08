@@ -123,4 +123,7 @@
   .tabs-trigger{
     @apply font-montreal px-3    bg-transparent
   }
+  .red{
+    @apply border border-red-500
+  }
 }

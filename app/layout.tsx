@@ -1,35 +1,8 @@
 import type { Metadata } from 'next';
 import { Mona_Sans } from 'next/font/google';
 import './globals.css';
-// import localFont from 'next/font/local';
 
-// const montreal = localFont({
-//   src: [
-//     {
-//       path: '/assets/fonts/Montreal Light.ttf',
-//       weight: '300',
-//       style: 'normal',
-//     },
-
-//     {
-//       path: '/assets/fonts/Montreal Regular.ttf',
-//       weight: '400',
-//       style: 'normal',
-//     },
-//     {
-//       path: '/assets/fonts/Montreal Medium.ttf',
-//       weight: '500',
-//       style: 'normal',
-//     },
-
-//     {
-//       path: '/assets/fonts/Montreal Medium.ttf',
-//       weight: '500',
-//       style: 'normal',
-//     },
-//   ],
-//   variable: '--font-my-',
-// });
+  
 
 const monaSans = Mona_Sans({
   variable: '--font-mona-sans',
@@ -46,9 +19,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
+
     <html lang="en">
-      <body className={`${monaSans.variable} antialiased`}>{children}</body>
+
+
+        <body className={`${monaSans.variable} antialiased`}>{children}</body>
+    
     </html>
   );
 }
