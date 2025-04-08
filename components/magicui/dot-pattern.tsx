@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { cn } from "@/lib/utils";
@@ -105,8 +106,8 @@ export function DotPattern({
         duration: Math.random() * 3 + 2,
       };
     },
-  );
-
+  )
+  
   return (
     <svg
       ref={containerRef}
@@ -123,7 +124,7 @@ export function DotPattern({
           <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
         </radialGradient>
       </defs>
-      {dots.map((dot, index) => (
+      {dots.map((dot) => (
         <motion.circle
           key={`${dot.x}-${dot.y}`}
           cx={dot.x}
